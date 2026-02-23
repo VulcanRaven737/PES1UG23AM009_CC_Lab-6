@@ -1,6 +1,10 @@
 FROM jenkins/jenkins:lts
 
 USER root
-RUN apt-get update && apt-get install -y     docker.io     make     g++     curl
+
+RUN apt-get update && \
+    apt-get install -y docker.io && \
+    groupadd -g 989 dockersock && \
+    usermod -aG 989 jenkins
 
 USER jenkins
